@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 /**
  * PageObjct for login page.
@@ -82,7 +83,7 @@ public class LoginPage extends BasePage {
 	 */
 	public WelcomePage clickLoginButton() {
 		this.loginButton.click();
-		return new WelcomePage(driver);
+		return PageFactory.initElements(driver, WelcomePage.class);
 	}
 
 }

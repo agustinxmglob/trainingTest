@@ -1,8 +1,5 @@
 package tests;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -10,14 +7,12 @@ import pages.LoginPage;
 import pages.WelcomePage;
 
 /**
- * Test Class for globantU login feature.
+ * Test Class for globantU login flow feature.
  * 
  * @author agustin.diez
  *
  */
-public class GlobantULoginTest {
-
-	private WebDriver driver = new FirefoxDriver();
+public class GlobantULoginTest extends BaseTest {
 
 	/**
 	 * This scripts verify testCase Play_01.
@@ -25,7 +20,7 @@ public class GlobantULoginTest {
 	 * @author agustin.diez
 	 */
 	@Test
-	public void testSuccessfulLogin() {
+	public void testLoginSuccessCase() {
 		LoginPage loginPage = this.loadAplication();
 		String userName = "UserName";
 		loginPage.enterUsername(userName);
@@ -36,9 +31,11 @@ public class GlobantULoginTest {
 		Assert.assertTrue(welcomePage.isdisplayed());
 	}
 
-	private LoginPage loadAplication() {
-		this.driver.get("https://globantu.globant.com/globantu/login");
-		return PageFactory.initElements(driver, LoginPage.class);
+	public void testLoginInvalidPassword() {
+		LoginPage loginPage = this.loadAplication();
+		String userName = "UserName";
+		loginPage.enterUsername(userName);
+		Assert.assertEquals(loginPage.getUsernameInputText(), userName);
 	}
 
 }
