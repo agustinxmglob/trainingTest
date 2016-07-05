@@ -22,20 +22,45 @@ public class GlobantULoginTest extends BaseTest {
 	@Test
 	public void testLoginSuccessCase() {
 		LoginPage loginPage = this.loadAplication();
-		String userName = "UserName";
+		String userName = GlobalData.VALID_USERNAME;
 		loginPage.enterUsername(userName);
 		Assert.assertEquals(loginPage.getUsernameInputText(), userName);
-		String password = "Password";
+		String password = GlobalData.VALID_PASSWORD;
 		loginPage.enterPassword(password);
 		WelcomePage welcomePage = loginPage.clickLoginButton();
 		Assert.assertTrue(welcomePage.isdisplayed());
 	}
 
+	/**
+	 * This scripts verify testCase Play_02
+	 * 
+	 * @author agustin.diez
+	 */
 	public void testLoginInvalidPassword() {
 		LoginPage loginPage = this.loadAplication();
-		String userName = "UserName";
+		String userName = GlobalData.VALID_USERNAME;
 		loginPage.enterUsername(userName);
 		Assert.assertEquals(loginPage.getUsernameInputText(), userName);
+		String password = GlobalData.INVALID_PASSWORD;
+		loginPage.enterPassword(password);
+		WelcomePage welcomePage = loginPage.clickLoginButton();
+		Assert.assertFalse(welcomePage.isdisplayed());
+	}
+
+	/**
+	 * This scripts verify testCase Play_03
+	 * 
+	 * @author agustin.diez
+	 */
+	public void testLoginInvalidUserAndPassword() {
+		LoginPage loginPage = this.loadAplication();
+		String userName = GlobalData.INVALID_USERNAME;
+		loginPage.enterUsername(userName);
+		Assert.assertEquals(loginPage.getUsernameInputText(), userName);
+		String password = GlobalData.INVALID_PASSWORD;
+		loginPage.enterPassword(password);
+		WelcomePage welcomePage = loginPage.clickLoginButton();
+		Assert.assertFalse(welcomePage.isdisplayed());
 	}
 
 }

@@ -76,7 +76,7 @@ public class LoginPage extends BasePage {
 	}
 
 	/**
-	 * This method click loginButton and returns a WelcomePage instance.
+	 * This transitive method click loginButton and returns a WelcomePage instance.
 	 * 
 	 * @author agustin.diez
 	 * @return PageObject

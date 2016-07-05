@@ -3,8 +3,27 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class WelcomePage extends BasePage {
+	// WebElements
+	@FindBy(css = "#certifFilters")
+	private WebElement sideBar;
+	@FindBy(css = "#mainView h2")
+	private WebElement title;
+	@FindBy(css = ".span12.homesection")
+	private WebElement backbroundDrawing;
+	@FindBy(css = ".ico-enroll")
+	private WebElement enrollButton;
+	@FindBy(css = ".ico-training")
+	private WebElement trainYourselfButton;
+	@FindBy(css = ".ico-cert")
+	private WebElement CertifiedButton;
+
+	// Components
+
+	private HeaderComponent headerComponent = PageFactory.initElements(driver, HeaderComponent.class);
+	private SideBarComponent sideBarComponent;
 
 	public WelcomePage(WebDriver driver) {
 		super(driver);
@@ -19,19 +38,6 @@ public class WelcomePage extends BasePage {
 	public boolean isdisplayed() {
 		return true;
 	}
-
-	@FindBy(css = "#certifFilters")
-	private WebElement sideBar;
-	@FindBy(css = "#mainView h2")
-	private WebElement title;
-	@FindBy(css = ".span12.homesection")
-	private WebElement backbroundDrawing;
-	@FindBy(css = ".ico-enroll")
-	private WebElement enrollButton;
-	@FindBy(css = ".ico-training")
-	private WebElement trainYourselfButton;
-	@FindBy(css = ".ico-cert")
-	private WebElement CertifiedButton;
 
 	/**
 	 * returns true if the page title is displayed.
@@ -82,5 +88,22 @@ public class WelcomePage extends BasePage {
 	public boolean getCertifiedButtonIsDisplayed() {
 		return this.CertifiedButton.isDisplayed();
 	}
+
+	/**
+	 * @author agustin.diez
+	 * @return
+	 */
+	public boolean headerIsDisplayer() {
+		return this.headerComponent.isDisplayed();
+	}
+
+	public boolean sideBarIsDisplayed() {
+		return this.sideBarComponent.isDisplayed();
+	}
+	
+	public HeaderComponent getHeaderComponent() {
+		return this.headerComponent;
+	}
+
 
 }
